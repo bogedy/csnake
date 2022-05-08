@@ -1,7 +1,4 @@
-#include <iostream>
-#include <unistd.h>
 #include <curses.h>
-#include <chrono>
 #include "SnakeGame.hpp"
 #include "Snake.hpp"
 

@@ -36,6 +36,11 @@ public:
         board.init(height, width);
         keypad(board.getAddress(), true);
 
+        if (board.getCharAt(snake.head.y - 3, snake.head.x) == ' '){
+            food.y = snake.head.y - 3;
+            food.x  = snake.head.x;
+        }
+
         // Initialize the tail with two tail pieces below
         for (int i=2; i>0; i--) {
             SnakePiece nextPiece(snake.head.y+i, snake.head.x);
@@ -80,7 +85,7 @@ public:
         else if (board.getCharAt(next.y, next.x) == '*') {
             snake.addTailPiece(snake.head);
             snake.head = next;
-            genNewFood();
+            food = genNewFood();
         }
         else {
             game_over = true;
