@@ -10,12 +10,14 @@ class Snake {
 
 public:
     direction dir = UP;
-    int mY, mX;
+    SnakePiece head;
     // Head position
-    Snake(int y=1, int x=1) :
-        mY(y), mX(x) {} 
+    Snake(int y=1, int x=1) {
+        head.y = y;
+        head.x = x;
+    }
 
-    void addPiece(SnakePiece next){
+    void addTailPiece(SnakePiece next){
         tail.push(next);
     }
 
@@ -31,7 +33,11 @@ public:
     }
 
     SnakePiece getNext() {
-        return SnakePiece(mY + dy[dir], mX + dx[dir]);
+        return SnakePiece(head.y + dy[dir], head.x + dx[dir]);
+    }
+
+    SnakePiece getTail() {
+        return tail.front();
     }
 
 };
@@ -39,6 +45,6 @@ public:
 struct SnakePiece {
     int y, x;
 
-    SnakePiece(int y, int x) :
+    SnakePiece(int y = 1, int x = 1) :
         y(y), x(x) {}
 };
