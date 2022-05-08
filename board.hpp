@@ -31,8 +31,8 @@ public:
         wtimeout(wboard, speed);
     }
 
-    void draw(int y, int x, char c){
-        mvwprintw(wboard, y, x, &c);
+    void draw(int y, int x, chtype c){
+        mvwaddch(wboard, y, x, c);
     }
 
     void refresh() {
