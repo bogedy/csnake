@@ -23,8 +23,7 @@ std::map<int, direction> keyMapper = {
 class SnakeGame {
     Board board;
     bool game_over = false;
-    int height, width; 
-    int speed;
+    int height, width, speed;
 
     Snake snake;
     SnakePiece food;
@@ -37,11 +36,11 @@ public:
         board.init(height, width);
 
         // Initialize the tail with two tail pieces below
-        for (int i=0; i<2; i++) {
-            SnakePiece nextPiece(snake.head.y+i+1, snake.head.x);
+        for (int i=2; i>0; i--) {
+            SnakePiece nextPiece(snake.head.y+i, snake.head.x);
             
             snake.addTailPiece(nextPiece);
-            board.draw(snake.head.y+i+1, snake.head.x, '#');
+            board.draw(nextPiece.y, nextPiece.x, '#');
             
             board.refresh();
         }
@@ -110,16 +109,16 @@ public:
     void draw() {
         // TODO: draw and call refresh
         board.draw(snake.head.y, snake.head.x, '@');
-        SnakePiece neck = snake.getTail();
+        SnakePiece neck = snake.getNeck();
         board.draw(neck.y, neck.x, '#');
         board.draw(food.y, food.x, '*');
         board.refresh();
     }
 
     void playGame(){
+        draw();
+        usleep(HALF_SECOND);
         while (!game_over){
-            draw();
-            usleep(HALF_SECOND);
             int input = getInput();
             logic(input);
             draw();

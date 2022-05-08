@@ -49,6 +49,10 @@ public:
         return tail.front();
     }
 
+    SnakePiece getNeck() {
+        return tail.back();
+    }
+
     int getLength() {
         return tail.size() + 1;
     }
