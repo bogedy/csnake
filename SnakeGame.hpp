@@ -34,6 +34,7 @@ public:
         speed(speed),  height(height), width(width) {
         snake = Snake(height/2, width/2);
         board.init(height, width);
+        keypad(board.getAddress(), true);
 
         // Initialize the tail with two tail pieces below
         for (int i=2; i>0; i--) {

@@ -42,4 +42,8 @@ public:
     char getCharAt(int y, int x) {
         return mvwinch(wboard, y, x);
     }
+
+    WINDOW* getAddress(){
+        return wboard;
+    }
 };

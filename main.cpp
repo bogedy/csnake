@@ -29,8 +29,5 @@ int main(){
 
     endwin();
 
-    cout<<keyMapper[216]<<endl;
-    cin.get();
-
     return 0;
 }
