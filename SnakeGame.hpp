@@ -32,6 +32,11 @@ class SnakeGame {
 public:
     SnakeGame(int speed = 125, int height = 15, int width = 30) : 
         speed(speed),  height(height), width(width) {
+        
+
+        // set random seed
+        srand(getTime());
+
         snake = Snake(height/2, width/2);
         board.init(height, width);
         keypad(board.getAddress(), true);
@@ -97,7 +102,6 @@ public:
     }
 
     SnakePiece genNewFood() {
-        // TODO on new food
         std::vector<SnakePiece> blank_spaces;
         for (int i = 1; i < height - 1; i++){
             for (int j = 1; j < width - 1; j++){
@@ -113,7 +117,6 @@ public:
     }
 
     void draw() {
-        // TODO: draw and call refresh
         board.draw(snake.head.y, snake.head.x, '@');
         SnakePiece neck = snake.getNeck();
         board.draw(neck.y, neck.x, '#');
