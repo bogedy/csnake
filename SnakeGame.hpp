@@ -4,6 +4,9 @@
 #include "board.hpp"
 #include <chrono>
 #include <map>
+#include <unistd.h>
+
+#define HALF_SECOND 500000
 
 int getTime(){
     return (int)std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
@@ -28,7 +31,7 @@ class SnakeGame {
     // Food position
 
 public:
-    SnakeGame(int speed = 125, int height = 30, int width = 30) : 
+    SnakeGame(int speed = 125, int height = 15, int width = 30) : 
         speed(speed),  height(height), width(width) {
         snake = Snake(height/2, width/2);
         board.init(height, width);
@@ -115,6 +118,8 @@ public:
 
     void playGame(){
         while (!game_over){
+            draw();
+            usleep(HALF_SECOND);
             int input = getInput();
             logic(input);
             draw();
@@ -123,41 +128,3 @@ public:
 
 
 };
-
-// class Board {
-//     WINDOW* wboard;
-
-// public:  
-//     int mheight, mwidth;
-
-//     void init(int height = 30, int width = 30) {
-//         mheight = height;
-//         mwidth = width;
-//         wboard = newwin(height, width, 0, 0);
-//         box(wboard, 0, 0);
-//     }
-
-//     ~Board() {
-//         delwin(wboard);
-//     }
-
-//     int getChIn() {
-//         return wgetch(wboard);
-//     }
-
-//     void setTimeout(int speed){
-//         wtimeout(wboard, speed);
-//     }
-
-//     void draw(int y, int x, char c){
-//         mvwprintw(wboard, y, x, &c);
-//     }
-
-//     void refresh() {
-//         wrefresh(wboard);
-//     }
-
-//     char getCharAt(int y, int x) {
-//         return mvwinch(wboard, y, x);
-//     }
-// };

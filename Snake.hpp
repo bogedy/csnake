@@ -1,8 +1,8 @@
 #pragma once
 #include <queue>
 
-int dx[5] = {1, 0, -1, 0, 1};
-int dy[5] = {0, -1, 0, 1, 1};
+int dx[5] = {1, 0, -1, 0, 0};
+int dy[5] = {0, -1, 0, 1, 0};
 // For quick directions 
 
 enum direction{RIGHT=0, UP, LEFT, DOWN, NONE};
@@ -35,7 +35,7 @@ public:
     }
 
     void setDirection(direction d){
-        if (dx[d] + dx[dir] == 0 && dy[d] + dy[dir] == 0){
+        if (d == NONE or (dx[d] + dx[dir] == 0 && dy[d] + dy[dir] == 0)){
             return;
         }
         else dir = d;

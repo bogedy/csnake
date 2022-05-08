@@ -12,6 +12,11 @@ public:
         mwidth = width;
         wboard = newwin(height, width, 0, 0);
         box(wboard, 0, 0);
+        for (int i = 1; i < height - 1; i++){
+            for (int j = 1; j < width - 1; j++){
+                draw(i, j, ' ');
+            }
+        }
     }
 
     ~Board() {
