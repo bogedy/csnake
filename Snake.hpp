@@ -5,6 +5,15 @@ int dx[5] = {1, 0, -1, 0, 1};
 int dy[5] = {0, -1, 0, 1, 1};
 // For quick directions 
 
+enum direction{RIGHT=0, UP, LEFT, DOWN, NONE};
+
+struct SnakePiece {
+    int y, x;
+
+    SnakePiece(int y = 1, int x = 1) :
+        y(y), x(x) {}
+};
+
 class Snake {
     std::queue<SnakePiece> tail;
 
@@ -40,11 +49,8 @@ public:
         return tail.front();
     }
 
-};
+    int getLength() {
+        return tail.size() + 1;
+    }
 
-struct SnakePiece {
-    int y, x;
-
-    SnakePiece(int y = 1, int x = 1) :
-        y(y), x(x) {}
 };

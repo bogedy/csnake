@@ -1,14 +1,13 @@
 #pragma once
 #include <curses.h>
-#include <Snake.hpp>
+#include "Snake.hpp"
+#include "board.hpp"
 #include <chrono>
 #include <map>
 
 int getTime(){
     return (int)std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 }
-
-enum direction{RIGHT=0, UP, LEFT, DOWN, NONE};
 
 std::map<int, direction> keyMapper = {
     {KEY_RIGHT, RIGHT},
@@ -125,40 +124,40 @@ public:
 
 };
 
-class Board {
-    WINDOW* wboard;
+// class Board {
+//     WINDOW* wboard;
 
-public:  
-    int mheight, mwidth;
+// public:  
+//     int mheight, mwidth;
 
-    void init(int height = 30, int width = 30) {
-        mheight = height;
-        mwidth = width;
-        wboard = newwin(height, width, 0, 0);
-        box(wboard, 0, 0);
-    }
+//     void init(int height = 30, int width = 30) {
+//         mheight = height;
+//         mwidth = width;
+//         wboard = newwin(height, width, 0, 0);
+//         box(wboard, 0, 0);
+//     }
 
-    ~Board() {
-        delwin(wboard);
-    }
+//     ~Board() {
+//         delwin(wboard);
+//     }
 
-    int getChIn() {
-        return wgetch(wboard);
-    }
+//     int getChIn() {
+//         return wgetch(wboard);
+//     }
 
-    void setTimeout(int speed){
-        wtimeout(wboard, speed);
-    }
+//     void setTimeout(int speed){
+//         wtimeout(wboard, speed);
+//     }
 
-    void draw(int y, int x, char c){
-        mvwprintw(wboard, y, x, &c);
-    }
+//     void draw(int y, int x, char c){
+//         mvwprintw(wboard, y, x, &c);
+//     }
 
-    void refresh() {
-        wrefresh(wboard);
-    }
+//     void refresh() {
+//         wrefresh(wboard);
+//     }
 
-    char getCharAt(int y, int x) {
-        return mvwinch(wboard, y, x);
-    }
-};
+//     char getCharAt(int y, int x) {
+//         return mvwinch(wboard, y, x);
+//     }
+// };
