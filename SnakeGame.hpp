@@ -60,6 +60,8 @@ public:
         board.setTimeout(0);
         while (getTime() - before < speed){
             new_c = board.getChIn();
+            // Doesn't seem to matter, but sleep 1 millisecond so we don't just scan on repeat
+            usleep(1000);
         }
         if (new_c != ERR){
             c = new_c;
