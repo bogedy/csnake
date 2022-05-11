@@ -1,8 +1,8 @@
 #pragma once
 #include <queue>
 
-int dx[5] = {1, 0, -1, 0, 0};
-int dy[5] = {0, -1, 0, 1, 0};
+extern int dx[5];
+extern int dy[5];
 // For quick directions 
 
 enum direction{RIGHT=0, UP, LEFT, DOWN, NONE};

@@ -39,7 +39,7 @@ public:
         wrefresh(wboard);
     }
 
-    char getCharAt(int y, int x) {
+    chtype getCharAt(int y, int x) {
         return mvwinch(wboard, y, x);
     }
 

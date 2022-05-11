@@ -2,23 +2,14 @@
 #include <curses.h>
 #include "Snake.hpp"
 #include "board.hpp"
-#include <chrono>
 #include <map>
 #include <unistd.h>
 
 #define HALF_SECOND 500000
 
-int getTime(){
-    return (int)std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-}
+extern int getTime();
 
-std::map<int, direction> keyMapper = {
-    {KEY_RIGHT, RIGHT},
-    {KEY_UP, UP},
-    {KEY_LEFT, LEFT},
-    {KEY_DOWN, DOWN},
-    {ERR, NONE}
-};
+extern std::map<int, direction> keyMapper;
 
 class SnakeGame {
     Board board;
